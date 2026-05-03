@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acme API | Interactive Docs</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 900: '#1e3a8a' }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Prism.js CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        body { transition: background-color 0.2s ease, color 0.2s ease; }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        
+        pre { position: relative; margin: 0 !important; border-radius: 0.5rem !important;}
+        .copy-btn { position: absolute; top: 8px; right: 8px; opacity: 0; transition: opacity 0.2s; }
+        pre:hover .copy-btn { opacity: 1; }
+    </style>
+</head>
+
+<body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-200 antialiased selection:bg-brand-500 selection:text-white">
+<!-- COMPACT Maintenance Overlay -->
+<div id="full-cover" class="fixed inset-0 z-[100] bg-slate-950 flex flex-col items-center justify-center text-center p-4 overflow-hidden">
+
+    <!-- Background grid - Giữ lại vì nó đẹp -->
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]"></div>
+
+    <!-- Glow behind icon - Làm nhỏ lại -->
+    <div class="absolute w-48 h-48 bg-yellow-500/10 blur-3xl rounded-full"></div>
+
+    <!-- Top stripe - Mỏng hơn (h-3) -->
+    <div class="absolute top-0 left-0 w-[200%] h-3 bg-[linear-gradient(45deg,#facc15_25%,#000_25%,#000_50%,#facc15_50%,#facc15_75%,#000_75%,#000)] bg-[length:30px_30px] animate-[slide_2s_linear_infinite]"></div>
+
+    <div class="relative z-10 max-w-sm">
+        
+        <!-- Icon - Thu nhỏ về w-14 -->
+        <i data-lucide="hard-hat" class="w-14 h-14 text-yellow-500 mb-4 mx-auto animate-bounce"></i>
+
+        <!-- Title - Hạ xuống text-3xl cho thanh thoát -->
+          <h1 class="text-3xl font-black text-white mb-2 tracking-tight uppercase">
+            Under <span class="text-yellow-500 italic">Construction</span>
+        </h1>
+
+        <!-- Description - Chỉnh font nhỏ lại chút -->
+<p class="text-sm text-slate-400 leading-relaxed px-2">
+    Docs vẫn đang làm tiếp á, mà mình đang ôn thi cuối kì nên bạn biết rồi đó ;(
+    thời gian online với update ít hơn bình thường xíu.  
+    API thì vẫn chạy ngon nha nên cứ yên tâm dùng nè.
+</p>
+
+        <!-- Status badge -->
+        <div class="mt-5 inline-flex items-center gap-2 px-3 py-1.5 bg-yellow-500/10 border border-yellow-500/20 rounded-md text-[13px] text-yellow-500 font-mono">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+            </span>
+            Estimated: After Final Exam ✍️
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-6 flex flex-col gap-3">
+            <div class="text-xs text-slate-500 hover:text-white underline-offset-4">
+                [ System.bypass_construction() ]
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom stripe - Mỏng hơn -->
+    <div class="absolute bottom-0 left-0 w-[200%] h-3 bg-[linear-gradient(45deg,#facc15_25%,#000_25%,#000_50%,#facc15_50%,#facc15_75%,#000_75%,#000)] bg-[length:30px_30px] animate-[slide_2s_linear_infinite_reverse]"></div>
+
+
+    <style>
+        @keyframes slide {
+            from { transform: translateX(-30px); }
+            to { transform: translateX(0); }
+        }
+    </style>
+</div>
+
+
+
+
+    <!-- Topbar -->
+    <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
+            <div class="flex items-center gap-4">
+                <button id="mobile-menu-btn" class="lg:hidden p-2 -ml-2 text-slate-500 hover:text-slate-900 dark:hover:text-white rounded-md">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+                <a href="#introduction" class="flex items-center gap-2 text-lg font-bold tracking-tight">
+                    <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-brand-500/30">
+                        <i data-lucide="terminal" class="w-5 h-5"></i>
+                    </div>
+                    API Docs
+                </a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button id="search-btn" class="hidden sm:flex items-center gap-2 w-64 px-3 py-1.5 text-sm text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-md hover:border-brand-500 transition-colors">
+                    <i data-lucide="search" class="w-4 h-4"></i>
+                    <span>Search API...</span>
+                    <span class="ml-auto flex gap-1"><kbd class="text-xs bg-white dark:bg-slate-800 border dark:border-slate-700 rounded px-1.5 py-0.5">⌘K</kbd></span>
+                </button>
+                <div class="h-6 w-px bg-slate-200 dark:bg-slate-800 hidden sm:block"></div>
+                <button id="theme-toggle" class="p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+        <div class="flex">
+            <!-- Sidebar -->
+            <aside id="sidebar" class="fixed inset-0 z-30 flex-none hidden w-full h-screen pt-20 bg-black/50 lg:block lg:w-64 lg:static lg:h-auto lg:bg-transparent lg:pt-8 lg:pb-12 border-r border-slate-200 dark:border-slate-800">
+                <div class="absolute inset-y-0 left-0 w-64 px-6 py-4 bg-white dark:bg-slate-950 overflow-y-auto lg:static lg:p-0 h-full lg:sticky lg:top-[6.5rem]">
+                    <div class="lg:hidden flex justify-between mb-6 pt-2">
+                        <span class="font-semibold">Navigation</span>
+                        <button id="close-sidebar" class="text-slate-500"><i data-lucide="x" class="w-5 h-5"></i></button>
+                    </div>
+                    <nav class="space-y-6">
+                        <div>
+                            <h3 class="font-semibold text-slate-900 dark:text-white mb-2 text-sm uppercase tracking-wider">Overview</h3>
+                            <ul class="space-y-2 border-l border-slate-200 dark:border-slate-800">
+                                <li><a href="#introduction" class="nav-link block pl-4 -ml-px border-l-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium">Introduction</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-slate-900 dark:text-white mb-2 text-sm uppercase tracking-wider">Endpoints</h3>
+                            <ul class="space-y-2 border-l border-slate-200 dark:border-slate-800">
+                                <li><a href="#genshin" class="nav-link block pl-4 -ml-px border-l-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium">Genshin Codes</a></li>
+                                <li><a href="#tiktok" class="nav-link block pl-4 -ml-px border-l-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium">TikTok DL</a></li>
+                                <li><a href="#youtube" class="nav-link block pl-4 -ml-px border-l-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium">YouTube DL</a></li>
+                                <li><a href="#discord" class="nav-link block pl-4 -ml-px border-l-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium">Discord Quest</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="flex-auto max-w-4xl min-w-0 px-4 py-10 lg:px-8 w-full">
+                <article id="app-content" class="prose prose-slate dark:prose-invert max-w-none fade-in"></article>
+            </main>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div id="search-modal" class="fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-200">
+        <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" id="search-backdrop"></div>
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-xl bg-white dark:bg-slate-900 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transform scale-95 transition-transform duration-200" id="search-container">
+            <div class="flex items-center px-4 py-4 border-b border-slate-200 dark:border-slate-800">
+                <i data-lucide="search" class="w-5 h-5 text-slate-400"></i>
+                <input type="text" id="search-input" placeholder="Search API..." class="w-full bg-transparent border-none focus:ring-0 text-slate-900 dark:text-white px-4 outline-none">
+                <button id="close-search" class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded">ESC</button>
+            </div>
+            <div class="p-4" id="search-results">
+                <a href="#tiktok" class="block p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    <p class="font-medium">TikTok Downloader API</p>
+                    <p class="text-xs text-slate-500">Endpoints > TikTok DL</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prism & Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+    <script>
+        // ==========================================
+        // 1. PAGE TEMPLATES (SPA CONTENT)
+        // ==========================================
+        const pages = {
+            introduction: `
+                <h1>Welcome to Acme API</h1>
+                <p class="lead">Integrate modern, high-performance API services easily. Test our live endpoints directly from this documentation.</p>
+                <div class="my-6 flex gap-3 bg-blue-50 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 p-4 rounded-lg border border-blue-100 dark:border-blue-800/50">
+                    <i data-lucide="info" class="w-5 h-5 mt-0.5"></i>
+                    <div><strong>Pro Tip:</strong> Click on the sidebar links to navigate and test endpoints dynamically without reloading the page.</div>
+                </div>
+                <h2>Authentication</h2>
+                <p>Most endpoints require an API key passed as a query parameter or header. Use the interactive testers to see how payloads are constructed.</p>
+            `,
+            genshin: `
+                <h1>Genshin Impact Codes</h1>
+                <p>Fetch the latest active Genshin Impact redeem codes along with their rewards and validity details.</p>
+                
+                <div class="flex items-center gap-2 mb-4 bg-slate-100 dark:bg-slate-800/50 p-2 rounded-md font-mono text-sm border border-slate-200 dark:border-slate-800">
+                    <span class="px-2 py-0.5 bg-green-500 text-white rounded text-xs font-bold">GET</span>
+                    <span class="text-slate-600 dark:text-slate-300">https://celeskry-api.hf.space/genshin-codes</span>
+                </div>
+
+                <div class="mt-8 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-slate-900 shadow-sm">
+                    <div class="px-5 py-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-slate-900/50">
+                        <h3 class="m-0 text-base font-semibold">Live Interactive Demo</h3>
+                        <button id="btn-genshin" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex gap-2 items-center">
+                            <i data-lucide="play" class="w-4 h-4"></i> Fetch Codes
+                        </button>
+                    </div>
+                    <div id="res-genshin" class="p-5 min-h-[150px] flex flex-col justify-center text-center text-slate-500">
+                        Click "Fetch Codes" to execute the request.
+                    </div>
+                </div>
+            `,
+            tiktok: `
+                <h1>TikTok Downloader</h1>
+                <p>Download video and audio assets from TikTok URLs without watermarks.</p>
+                
+                <div class="flex items-center gap-2 mb-4 bg-slate-100 dark:bg-slate-800/50 p-2 rounded-md font-mono text-sm border border-slate-200 dark:border-slate-800">
+                    <span class="px-2 py-0.5 bg-green-500 text-white rounded text-xs font-bold">GET</span>
+                    <span class="text-slate-600 dark:text-slate-300">https://celeskry-api-3.hf.space/api/v1/tiktok/dl</span>
+                </div>
+
+                <div class="mt-8 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-slate-900 shadow-sm">
+                    <div class="p-5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50">
+                        <label class="block text-sm font-medium mb-2">TikTok Video URL</label>
+                        <div class="flex gap-3">
+                            <input type="text" id="tt-url" value="https://vt.tiktok.com/ZS9xNryBG/" class="flex-1 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-500">
+                            <button id="btn-tt" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap">
+                                Execute Request
+                            </button>
+                        </div>
+                    </div>
+                    <div class="relative bg-slate-950 rounded-b-xl overflow-hidden">
+                        <div id="res-tt-meta" class="absolute top-3 right-3 text-xs text-slate-400 z-10 hidden"></div>
+                        <pre id="res-tt" class="p-5 text-sm m-0 min-h-[200px] flex items-center justify-center text-slate-500"><code class="language-json">// Response will appear here</code></pre>
+                    </div>
+                </div>
+            `,
+            youtube: `
+                <h1>YouTube Downloader</h1>
+                <p>Asynchronous queue system for downloading YouTube videos. Create a job, then poll for status.</p>
+                
+                <div class="space-y-2 mb-6">
+                    <div class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800/50 p-2 rounded-md font-mono text-sm border border-slate-200 dark:border-slate-800">
+                        <span class="px-2 py-0.5 bg-green-500 text-white rounded text-xs font-bold">GET</span>
+                        <span class="text-slate-600 dark:text-slate-300">/api/v1/youtube/dl</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800/50 p-2 rounded-md font-mono text-sm border border-slate-200 dark:border-slate-800">
+                        <span class="px-2 py-0.5 bg-blue-500 text-white rounded text-xs font-bold">GET</span>
+                        <span class="text-slate-600 dark:text-slate-300">/api/v1/youtube/status?job_id={id}</span>
+                    </div>
+                </div>
+
+                <div class="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-slate-900 shadow-sm">
+                    <div class="p-5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50">
+                        <label class="block text-sm font-medium mb-2">YouTube URL</label>
+                        <div class="flex gap-3">
+                            <input type="text" id="yt-url" value="https://youtu.be/stLETwyiX9k" class="flex-1 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-500">
+                            <button id="btn-yt" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap">
+                                Start Job
+                            </button>
+                        </div>
+                    </div>
+                    <div id="yt-progress" class="hidden p-4 bg-blue-50 dark:bg-blue-900/20 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-sm">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="loader-circle" class="w-4 h-4 animate-spin text-brand-500"></i>
+                            <span id="yt-status-text" class="font-medium text-brand-600 dark:text-brand-400">Polling status...</span>
+                        </div>
+                        <span id="yt-job-id" class="font-mono text-xs text-slate-500"></span>
+                    </div>
+                    <div class="bg-slate-950 rounded-b-xl overflow-hidden">
+                        <pre id="res-yt" class="p-5 text-sm m-0 min-h-[150px] flex items-center justify-center text-slate-500"><code class="language-json">// Final status payload will appear here</code></pre>
+                    </div>
+                </div>
+            `,
+            discord: `
+                <h1>Discord Quest Automator</h1>
+                <p>Automate Discord quests. Login with your token, start the quest, and view live polling logs.</p>
+                
+                <div class="space-y-2 mb-6">
+                    <div class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800/50 p-2 rounded-md font-mono text-sm border border-slate-200 dark:border-slate-800">
+                        <span class="px-2 py-0.5 bg-yellow-500 text-white rounded text-xs font-bold">POST</span>
+                        <span class="text-slate-600 dark:text-slate-300">/api/v1/discord/quest/login</span>
+                    </div>
+                </div>
+
+                <div class="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-slate-900 shadow-sm">
+                    <div class="p-5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50">
+                        <label class="block text-sm font-medium mb-2">Discord User Token</label>
+                        <div class="flex gap-3">
+                            <input type="password" id="dc-token" placeholder="MTEwNTY2NDY..." class="flex-1 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-500">
+                            <button id="btn-dc-login" class="bg-slate-800 dark:bg-slate-700 hover:bg-slate-900 dark:hover:bg-slate-600 text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors">
+                                Login
+                            </button>
+                            <button id="btn-dc-start" class="hidden bg-brand-600 hover:bg-brand-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors">
+                                Start Quest
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Discord Profile Box -->
+                    <div id="dc-profile" class="hidden p-5 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center gap-4"></div>
+
+                    <div class="bg-slate-950 rounded-b-xl overflow-hidden">
+                        <pre id="res-dc" class="p-5 text-sm m-0 min-h-[200px] flex items-center justify-center text-slate-500"><code class="language-json">// Console Logs & Payload</code></pre>
+                    </div>
+                </div>
+            `
+        };
+
+        // Global state for cleanup
+        let currentInterval = null;
+
+        // ==========================================
+        // 2. ROUTER & UI LOGIC
+        // ==========================================
+        function handleRoute() {
+            // Cleanup previous intervals
+            if (currentInterval) clearInterval(currentInterval);
+
+            let hash = window.location.hash.substring(1) || 'introduction';
+            if (!pages[hash]) hash = 'introduction';
+
+            // Inject Content
+            const container = document.getElementById('app-content');
+            container.innerHTML = pages[hash];
+            
+            // Re-trigger animation
+            container.classList.remove('fade-in');
+            void container.offsetWidth; // reflow
+            container.classList.add('fade-in');
+
+            // Update Active Sidebar Link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const isActive = link.getAttribute('href') === `#${hash}`;
+                link.classList.toggle('border-brand-500', isActive);
+                link.classList.toggle('border-transparent', !isActive);
+                link.classList.toggle('text-brand-600', isActive);
+                link.classList.toggle('dark:text-brand-400', isActive);
+            });
+
+            // Add Copy Buttons to Code Blocks
+            document.querySelectorAll('pre').forEach(pre => {
+                if(pre.querySelector('.copy-btn')) return;
+                const btn = document.createElement('button');
+                btn.className = 'copy-btn p-1.5 rounded-md bg-slate-700 hover:bg-slate-600 text-slate-300 transition-colors border border-slate-600';
+                btn.innerHTML = '<i data-lucide="copy" class="w-4 h-4"></i>';
+                btn.onclick = () => {
+                    const text = pre.querySelector('code').innerText;
+                    navigator.clipboard.writeText(text);
+                    btn.innerHTML = '<i data-lucide="check" class="w-4 h-4 text-green-400"></i>';
+                    lucide.createIcons();
+                    setTimeout(() => { btn.innerHTML = '<i data-lucide="copy" class="w-4 h-4"></i>'; lucide.createIcons(); }, 2000);
+                };
+                pre.appendChild(btn);
+            });
+
+            Prism.highlightAll();
+            lucide.createIcons();
+
+            // Bind Events based on page
+            bindPageEvents(hash);
+            
+            // Mobile auto-close
+            if(window.innerWidth < 1024) document.getElementById('sidebar').classList.add('hidden');
+        }
+
+        // ==========================================
+        // 3. API BINDINGS & HANDLERS
+        // ==========================================
+        function bindPageEvents(hash) {
+            if (hash === 'genshin') {
+                document.getElementById('btn-genshin').addEventListener('click', handleGenshin);
+            } else if (hash === 'tiktok') {
+                document.getElementById('btn-tt').addEventListener('click', handleTikTok);
+            } else if (hash === 'youtube') {
+                document.getElementById('btn-yt').addEventListener('click', handleYouTube);
+            } else if (hash === 'discord') {
+                document.getElementById('btn-dc-login').addEventListener('click', handleDiscordLogin);
+                document.getElementById('btn-dc-start').addEventListener('click', handleDiscordStart);
+            }
+        }
+
+        function renderJSON(elementId, jsonObj, timeMs = null, badgeId = null) {
+            const el = document.getElementById(elementId);
+            el.className = 'language-json w-full m-0 p-5 !bg-transparent';
+            el.innerHTML = JSON.stringify(jsonObj, null, 2);
+            Prism.highlightElement(el);
+            
+            if (badgeId && timeMs) {
+                const badge = document.getElementById(badgeId);
+                badge.innerHTML = `<span class="${jsonObj.error || jsonObj.ok===false ? 'text-red-400' : 'text-green-400'} font-semibold mr-2">200 OK</span> ${timeMs}ms`;
+                badge.classList.remove('hidden');
+            }
+        }
+
+        // --- GENSHIN HANDLER ---
+        async function handleGenshin() {
+            const resEl = document.getElementById('res-genshin');
+            resEl.innerHTML = `<div class="py-10 text-center"><i data-lucide="loader-circle" class="w-6 h-6 animate-spin mx-auto text-brand-500 mb-2"></i>Fetching...</div>`;
+            lucide.createIcons();
+            
+            try {
+                const res = await fetch('https://celeskry-api.hf.space/genshin-codes');
+                const data = await res.json();
+                
+                let html = `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">`;
+                data.cards.forEach(card => {
+                    html += `
+                    <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-4 bg-slate-50 dark:bg-slate-800/50 text-left">
+                        <div class="flex justify-between items-start mb-2">
+                            <code class="px-2 py-1 bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 rounded font-bold text-sm">${card.codes[0]}</code>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-3">${card.server}</p>
+                        <ul class="text-sm space-y-1 mb-3">
+                            ${card.rewards.map(r => `<li><i data-lucide="sparkles" class="inline w-3 h-3 text-yellow-500 mr-1"></i>${r}</li>`).join('')}
+                        </ul>
+                        <div class="text-[11px] text-slate-400 border-t border-slate-200 dark:border-slate-700 pt-2">${card.validity}</div>
+                    </div>`;
+                });
+                html += `</div>`;
+                resEl.innerHTML = html;
+                resEl.classList.remove('justify-center', 'text-center');
+                lucide.createIcons();
+            } catch (e) {
+                resEl.innerHTML = `<div class="text-red-500">Failed to fetch API. CORS or network error.</div>`;
+            }
+        }
+
+        // --- TIKTOK HANDLER ---
+        async function handleTikTok() {
+            const url = document.getElementById('tt-url').value;
+            const btn = document.getElementById('btn-tt');
+            const start = performance.now();
+            
+            btn.innerHTML = `<i data-lucide="loader-circle" class="w-4 h-4 animate-spin inline mr-2"></i> Processing...`;
+            document.getElementById('res-tt').innerHTML = '// Fetching...';
+            lucide.createIcons();
+
+            try {
+                const apiStr = `https://celeskry-api-3.hf.space/api/v1/tiktok/dl?url=${encodeURIComponent(url)}&apikey=bfbcb8f2-fd2a-464d-adfe-e687a11dbe0c`;
+                const res = await fetch(apiStr);
+                const data = await res.json();
+                renderJSON('res-tt', data, Math.round(performance.now() - start), 'res-tt-meta');
+            } catch (e) {
+                renderJSON('res-tt', { error: e.message });
+            } finally {
+                btn.innerHTML = `Execute Request`;
+            }
+        }
+
+        // --- YOUTUBE HANDLER ---
+        async function handleYouTube() {
+            const url = document.getElementById('yt-url').value;
+            const prog = document.getElementById('yt-progress');
+            const statusText = document.getElementById('yt-status-text');
+            const idText = document.getElementById('yt-job-id');
+            const resBlock = document.getElementById('res-yt');
+            
+            resBlock.innerHTML = '// Creating job...';
+            prog.classList.remove('hidden');
+            
+            try {
+                // Step 1: Create Job
+                const apiStr = `https://celeskry-api-3.hf.space/api/v1/youtube/dl?url=${encodeURIComponent(url)}&apikey=bfbcb8f2-fd2a-464d-adfe-e687a11dbe0c`;
+                const res = await fetch(apiStr);
+                const initData = await res.json();
+                
+                if (!initData.job_id) throw new Error("No Job ID returned");
+                
+                idText.innerText = `Job: ${initData.job_id.split('-')[0]}...`;
+                renderJSON('res-yt', initData);
+
+                // Step 2: Poll Status
+                currentInterval = setInterval(async () => {
+                    try {
+                        const statusRes = await fetch(`https://celeskry-api-3.hf.space/api/v1/youtube/status?job_id=${initData.job_id}`);
+                        const statusData = await statusRes.json();
+                        
+                        renderJSON('res-yt', statusData);
+
+                        if (statusData.data && statusData.data.status === 'completed') {
+                            clearInterval(currentInterval);
+                            statusText.innerText = "Completed!";
+                            statusText.classList.replace('text-brand-600', 'text-green-500');
+                            prog.querySelector('i').classList.replace('animate-spin', 'hidden');
+                        }
+                    } catch (e) {} // ignore interval errors
+                }, 2000);
+
+            } catch (e) {
+                renderJSON('res-yt', { error: e.message });
+                prog.classList.add('hidden');
+            }
+        }
+
+        // --- DISCORD HANDLER ---
+        let currentDcToken = "";
+        let currentDcTokenId = "";
+        const DC_BASE = "https://celeskry-api-2-4af85c9.hf.space/api/v1/discord/quest";
+
+        async function handleDiscordLogin() {
+            const token = document.getElementById('dc-token').value;
+            if(!token) return alert("Enter token first");
+            
+            currentDcToken = token;
+            const btn = document.getElementById('btn-dc-login');
+            btn.innerHTML = 'Logging in...';
+            
+            try {
+                const res = await fetch(`${DC_BASE}/login`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token: token })
+                });
+                const data = await res.json();
+                renderJSON('res-dc', data);
+                
+                if (data.success) {
+                    currentDcTokenId = data.token_id;
+                    document.getElementById('btn-dc-start').classList.remove('hidden');
+                    btn.classList.add('hidden');
+                    
+                    // Show profile ui mock
+                    document.getElementById('dc-profile').classList.remove('hidden');
+                    document.getElementById('dc-profile').innerHTML = `
+                        <div class="w-10 h-10 bg-indigo-500 rounded-full flex items-center justify-center text-white font-bold">DC</div>
+                        <div>
+                            <p class="font-bold text-sm">Authenticated User</p>
+                            <p class="text-xs text-slate-500">Token ID: ${data.token_id} | Orbs: ${data.orbs_balance || 0}</p>
+                        </div>
+                    `;
+                }
+            } catch (e) {
+                renderJSON('res-dc', { error: e.message, hint: "Check if backend allows CORS" });
+            } finally {
+                btn.innerHTML = 'Login';
+            }
+        }
+
+        async function handleDiscordStart() {
+            document.getElementById('btn-dc-start').innerText = 'Starting...';
+            try {
+                const res = await fetch(`${DC_BASE}/start`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token: currentDcToken })
+                });
+                const startData = await res.json();
+                renderJSON('res-dc', startData);
+
+                // Poll status
+                currentInterval = setInterval(async () => {
+                    try {
+                        const sRes = await fetch(`${DC_BASE}/status/${currentDcTokenId}`);
+                        const sData = await sRes.json();
+                        renderJSON('res-dc', sData);
+                        if(sData.overall_status === 'completed') clearInterval(currentInterval);
+                    } catch(e){}
+                }, 3000);
+
+            } catch (e) {
+                 renderJSON('res-dc', { error: e.message });
+            }
+        }
+
+        // ==========================================
+        // 4. INIT & CORE UI LISTENERS
+        // ==========================================
+        window.addEventListener('hashchange', handleRoute);
+        window.addEventListener('DOMContentLoaded', () => {
+            
+            // Theme setup
+            const html = document.documentElement;
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                html.classList.add('dark');
+            }
+            document.getElementById('theme-toggle').onclick = () => {
+                html.classList.toggle('dark');
+                localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+            };
+
+            // Mobile menu
+            document.getElementById('mobile-menu-btn').onclick = () => {
+                document.getElementById('sidebar').classList.toggle('hidden');
+            };
+            document.getElementById('close-sidebar').onclick = () => {
+                document.getElementById('sidebar').classList.add('hidden');
+            };
+
+            // Search Modal
+            const modal = document.getElementById('search-modal');
+            const searchBtn = document.getElementById('search-btn');
+            const openSearch = () => {
+                modal.classList.remove('hidden');
+                void modal.offsetWidth;
+                modal.classList.remove('opacity-0');
+                document.getElementById('search-input').focus();
+            };
+            const closeSearch = () => {
+                modal.classList.add('opacity-0');
+                setTimeout(() => modal.classList.add('hidden'), 200);
+            };
+
+            searchBtn.onclick = openSearch;
+            document.getElementById('close-search').onclick = closeSearch;
+            document.getElementById('search-backdrop').onclick = closeSearch;
+            document.addEventListener('keydown', e => {
+                if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+                if (e.key === 'Escape') closeSearch();
+            });
+            document.getElementById('search-results').onclick = (e) => {
+                if(e.target.closest('a')) closeSearch();
+            };
+
+            // Initial Render
+            handleRoute();
+        });
+
+
+    </script>
+</body>
+</html>
